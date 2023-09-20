@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const baseUrl = "https://elite-dev-test-api.azurewebsites.net/";
+const baseUrl = "http://localhost:3001/api/v1/clinica";
 
-export const getContacts = () => {
-  return axios.get(`${baseUrl}api/contact`);
+export const getEmployees = () => {
+  return axios.get(`${baseUrl}/employees`);
 };
 
 // export const deleteContacts = (id) => {
