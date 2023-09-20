@@ -14,9 +14,13 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import logo from "../assets/Logo-IngenieriaDigital.svg";
+import isoLogo from "../assets/Isologo-IngenieriaDigital.svg";
+import iconoHome from "../assets/Icono-Home.svg";
+import iconoEmployees from "../assets/Icono-Colaboradores.svg";
 const drawerWidth = 360;
 
-export default function Layout() {
+//TODO: Move inline styles to a separated styles sheet
+const Layout = (props: any) => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -42,6 +46,7 @@ export default function Layout() {
             width: drawerWidth,
             boxSizing: "border-box",
             bgcolor: "#081551",
+            boxShadow: "1px 1px 10px #D2E4EA",
           },
         }}
         variant="permanent"
@@ -51,35 +56,54 @@ export default function Layout() {
           style={{
             width: "100px",
             height: "50px",
-            marginTop: "7h",
+            marginTop: "100px",
             marginLeft: "1vw",
             marginBottom: "10vh",
           }}
         >
           <img src={logo} alt="logo-test" />
         </div>
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+
+        <div
+          style={{
+            width: "100px",
+            height: "50px",
+            marginTop: "7h",
+            marginLeft: "1vw",
+            marginBottom: "5vh",
+          }}
+        >
+          <img src={isoLogo} alt="logo-test" />
+        </div>
+
+        <List
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            justifyItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          {["Dashboard", "Colaboradores"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+                <img
+                  src={index % 2 === 0 ? iconoHome : iconoEmployees}
+                  alt="logo"
+                  style={{ margin: "10px" }}
+                />
+                <ListItemText primary={text} style={{ color: "white" }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-        </Typography>
+        {props.children}
+        <h1>test</h1>
       </Box>
     </Box>
   );
-}
+};
+
+export default Layout;
