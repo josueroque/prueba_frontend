@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="248.31" height="77.146" viewBox="0 0 248.31 77.146">
+  <g id="Grupo_24742" data-name="Grupo 24742" transform="translate(-92.852 -217.781)">
+    <text id="Ingeniería" transform="translate(175.162 250.781)" fill="#fff" font-size="34" font-family="Konnect-SemiBold, Konnect" font-weight="600"><tspan x="0" y="0">Ingeniería</tspan></text>
+    <text id="Digital" transform="translate(172.368 283.927)" fill="#00b9eb" font-size="34" font-family="Konnect-SemiBold, Konnect" font-weight="600"><tspan x="0" y="0">Digital</tspan></text>
+    <circle id="Elipse_2188" data-name="Elipse 2188" cx="12.565" cy="12.565" r="12.565" transform="translate(92.852 228.786)" fill="#fff"/>
+    <rect id="Rectángulo_47172" data-name="Rectángulo 47172" width="25.129" height="26.349" transform="translate(92.852 260.712)" fill="#00b9eb"/>
+    <path id="Trazado_68469" data-name="Trazado 68469" d="M142.241,310.544A29.265,29.265,0,0,0,167.61,284.2H142.241Z" transform="translate(-17.463 -23.483)" fill="#fff"/>
+    <path id="Trazado_68470" data-name="Trazado 68470" d="M167.441,260.07a29.272,29.272,0,0,0-25.2-24.884V260.07Z" transform="translate(-17.463 -6.154)" fill="#00b9eb"/>
+  </g>
+</svg>
