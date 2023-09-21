@@ -23,10 +23,10 @@ const reducer = (
 };
 export const UserContext = React.createContext<any>(null);
 export const UserContextProvider = (props: any) => {
-  const [cartState, dispatch] = useReducer<IUserInfo | any>(reducer, {});
+  const [userState, dispatch] = useReducer<IUserInfo | any>(reducer, {});
 
   return (
-    <UserContext.Provider value={{ dispatch, cartState }}>
+    <UserContext.Provider value={{ dispatch, userState }}>
       {props.children}
     </UserContext.Provider>
   );

@@ -5,8 +5,8 @@ export interface IEmployee {
   LastName: string;
   PhoneNumber: string;
   Email: string;
-  Password: string;
+  Password?: string;
   Gender: string;
-  Active: boolean;
+  Active?: boolean;
   PositionId: number;
 }

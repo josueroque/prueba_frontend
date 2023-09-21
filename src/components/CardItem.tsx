@@ -10,6 +10,7 @@ import iconId from "../assets/Icono-ID.svg";
 import iconEmail from "../assets/Icono-Mail.svg";
 import iconPhoneNumber from "../assets/Icono-Telefono.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Dialog from "./CreateDialog";
 
 interface Props {
   firstName: string;
@@ -20,6 +21,7 @@ interface Props {
   position: any;
   id: number;
   gender: string;
+  updateList: () => {};
 }
 
 export const CardItem: React.FC<Props> = ({
@@ -31,9 +33,11 @@ export const CardItem: React.FC<Props> = ({
   position,
   documentNumber,
   gender,
+  updateList,
 }) => {
   const [showButtons, setShowButtons] = React.useState<boolean>(false);
-
+  const [open, setOpen] = React.useState(false);
+  console.log(position);
   return (
     <Card
       sx={{
@@ -94,7 +98,11 @@ export const CardItem: React.FC<Props> = ({
           className="card-actions"
           style={{ display: !showButtons ? "none" : "flex" }}
         >
-          <Button variant="contained" className="card-button card-button-edit">
+          <Button
+            variant="contained"
+            className="card-button card-button-edit"
+            onClick={() => setOpen(true)}
+          >
             Editar
           </Button>
           <Button
@@ -105,6 +113,23 @@ export const CardItem: React.FC<Props> = ({
           </Button>
         </div>
       </CardActions>
+      <Dialog
+        open={open}
+        setOpen={setOpen}
+        updateList={updateList}
+        id={id}
+        setShowButtons={setShowButtons}
+        employee={{
+          FirstName: firstName,
+          LastName: lastName,
+          Email: email,
+          PhoneNumber: phoneNumber,
+          DocumentNumber: documentNumber,
+          PositionId: position.id,
+          Id: id,
+          Gender: gender,
+        }}
+      ></Dialog>
     </Card>
   );
 };

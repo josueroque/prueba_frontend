@@ -6,16 +6,20 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IEmployee } from "../interfaces";
-import { createEmployee } from "../services/apiService";
+import { createEmployee, editEmployee } from "../services/apiService";
 import { IconButton, MenuItem, Select } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { getPositions } from "../services/apiService";
+import { UserContext } from "../context/UserContext";
 import swal from "sweetalert";
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowButtons?: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
   updateList: () => {};
+  id: number;
+  employee?: IEmployee;
 }
 
 const FormDialog: React.FC<Props> = (props) => {
@@ -24,15 +28,39 @@ const FormDialog: React.FC<Props> = (props) => {
   const [positionId, setPositionId] = React.useState<number>(0);
   const [docNumber, setDocNumber] = React.useState<string>("");
   const [phoneNumber, setPhoneNumber] = React.useState<string>("");
-  const [email, setEmail] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>(props.employee?.Email ?? "");
   const [password, setPassword] = React.useState<string>("");
   const [confirmPassword, setConfirmPassword] = React.useState<string>("");
 
+  const { dispatch, userState } = React.useContext(UserContext);
+
   const positions = getPositions();
+
+  React.useEffect(() => {
+    if (props.employee) {
+      console.log(props.employee);
+      setEditValues();
+    }
+  }, [props.employee]);
+
+  const setEditValues = () => {
+    if (props.employee) {
+      setFirstName(props.employee.FirstName);
+      setLastName(props.employee.LastName);
+      setPositionId(props.employee.PositionId);
+      setDocNumber(props.employee.DocumentNumber);
+      setPhoneNumber(props.employee.PhoneNumber);
+      setEmail(props.employee.Email);
+    }
+  };
 
   const handleCreate = async (employee: IEmployee) => {
     try {
-      await createEmployee(employee, "");
+      if (props.id) {
+        employee.Id = props.id;
+        await editEmployee(employee, userState.token);
+      } else await createEmployee(employee, userState.token);
+
       swal({
         title: "success",
         icon: "success",
@@ -51,6 +79,7 @@ const FormDialog: React.FC<Props> = (props) => {
 
   const handleClose = () => {
     cleanValues();
+    if (props.setShowButtons) props.setShowButtons(false);
     props.setOpen(false);
   };
 
@@ -101,11 +130,11 @@ const FormDialog: React.FC<Props> = (props) => {
             LastName: lastName,
             PositionId: positionId,
             Email: email,
-            Password: password,
             DocumentNumber: docNumber,
             Gender: "M",
             PhoneNumber: phoneNumber,
             Active: true,
+            // Password: "passwordTest",
           };
           handleCreate(employee);
         }}
@@ -126,7 +155,7 @@ const FormDialog: React.FC<Props> = (props) => {
           align="center"
           style={{ font: "normal normal 900 35px/60px Lato" }}
         >
-          Agregar Colaborador
+          {props.id === 0 ? "Agregar colaborador" : "Editar colaborador"}
         </DialogTitle>
 
         <DialogContent>
@@ -179,6 +208,7 @@ const FormDialog: React.FC<Props> = (props) => {
                 placeholder="Contraseña"
                 type="password"
                 value={password}
+                required={!props.id}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setPassword(event.target.value);
                 }}
@@ -238,6 +268,7 @@ const FormDialog: React.FC<Props> = (props) => {
                 variant="outlined"
                 placeholder="Confirmar Contraseña"
                 type="password"
+                required={!props.id}
                 value={confirmPassword}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setConfirmPassword(event.target.value);

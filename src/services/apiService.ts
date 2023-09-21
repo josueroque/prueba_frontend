@@ -35,9 +35,17 @@ export const createEmployee = (employee: IEmployee, token: string) => {
   );
 };
 
-// export const editContact = (contact) => {
-//   return axios.put(`${baseUrl}api/contact/${contact.id}`, contact);
-// };
+export const editEmployee = (employee: IEmployee, token: string) => {
+  return axios.put(
+    `${baseUrl}/employees/${employee.Id}`,
+    { employee },
+    {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+    }
+  );
+};
 
 // export const getContact = (id) => {
 //   return axios.get(`${baseUrl}api/contact/${id}`);

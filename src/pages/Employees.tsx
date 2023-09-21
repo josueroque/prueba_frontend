@@ -4,9 +4,10 @@ import { getEmployees } from "../services/apiService";
 import CardItem from "../components/CardItem";
 import iconAdd from "../assets/Icono-Add.svg";
 import { IconButton, Typography } from "@mui/material";
-import Dialog from "../components/Dialog";
+import Dialog from "../components/CreateDialog";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-
 interface IEmployee {
   firstName: string;
   lastName: string;
@@ -21,18 +22,29 @@ interface IEmployee {
 const Employees: React.FC = () => {
   const [employeesList, setEmployeesList] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+
+  const { dispatch, userState } = React.useContext(UserContext);
+
+  const navigate = useNavigate();
+
   const fetchEmployees = async () => {
     try {
-      const response = await getEmployees("");
+      if (!userState.token) {
+        navigate("/");
+      }
+      const response = await getEmployees(userState.token);
       setEmployeesList(response.data);
     } catch (error) {
-      swal({
-        title: "Error",
-        text: "An error ocurred fetching the data",
-        icon: "error",
-      });
+      if (userState.token) {
+        swal({
+          title: "Error",
+          text: "An error ocurred fetching the data",
+          icon: "error",
+        });
+      }
     }
   };
+
   React.useEffect(() => {
     fetchEmployees();
   }, []);
@@ -52,13 +64,14 @@ const Employees: React.FC = () => {
       <div className="page-employees">
         {employeesList.length > 0 &&
           employeesList.map((item: IEmployee) => (
-            <CardItem {...item} key={item.id} />
+            <CardItem {...item} key={item.id} updateList={fetchEmployees} />
           ))}
       </div>
       <Dialog
         open={open}
         setOpen={setOpen}
         updateList={fetchEmployees}
+        id={0}
       ></Dialog>
     </Layout>
   );
