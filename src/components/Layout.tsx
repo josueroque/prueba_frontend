@@ -17,7 +17,7 @@ import logo from "../assets/Logo-IngenieriaDigital.svg";
 import isoLogo from "../assets/Isologo-IngenieriaDigital.svg";
 import iconoHome from "../assets/Icono-Home.svg";
 import iconoEmployees from "../assets/Icono-Colaboradores.svg";
-const drawerWidth = 360;
+const drawerWidth = 320;
 
 //TODO: Move inline styles to a separated styles sheet
 const Layout = (props: any) => {
@@ -61,7 +61,7 @@ const Layout = (props: any) => {
             marginBottom: "10vh",
           }}
         >
-          <img src={logo} alt="logo-test" />
+          <img src={logo} alt="logo" />
         </div>
 
         <div

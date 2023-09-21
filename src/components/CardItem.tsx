@@ -101,17 +101,12 @@ export const CardItem: React.FC<Props> = ({
       <CardActions hidden={true}>
         <div
           className="card-actions"
-          style={{ display: showButtons ? "none" : "flex" }}
+          style={{ display: !showButtons ? "none" : "flex" }}
         >
           <Button variant="contained" className="card-button card-button-edit">
             Editar
           </Button>
-          <Button
-            variant="contained"
-            className="card-button card-button-delete"
-          >
-            Dar de Baja
-          </Button>
+          <Button variant="contained">Dar de Baja</Button>
         </div>
       </CardActions>
     </Card>

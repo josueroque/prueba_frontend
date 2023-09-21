@@ -13,7 +13,11 @@ code {
 }
 
 .page-employees {
-  margin-top: 7vh;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .card-top-row {
@@ -31,22 +35,18 @@ code {
 }
 
 .card-employee-name {
-  font: "normal normal 900 20px/28px Lato";
+  font: "normal normal 900 24px/28px Lato";
   font-weight: bold;
 }
 
 .card {
-  /* Layout Properties */
-
-  width: 420px;
+  width: 30%;
   height: 300px;
-
-  /* UI Properties */
-
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 1px 1px 10px #d2e4ea;
   border-radius: 20px;
   opacity: 1;
+  margin: 20px;
 }
 
 .card-button {
@@ -72,4 +72,24 @@ code {
   margin-top: -15px;
   padding: 0;
   width: 100%;
+}
+
+.employees-page-top {
+  margin-top: 10vh;
+  margin-bottom: 3vh;
+  display: flex;
+  gap: 10px;
+  margin-left: 25px;
+}
+
+.modal-button {
+  background: #081551 0% 0% no-repeat padding-box !important;
+  border-radius: 20px !important;
+}
+
+@media only screen and (width < 1366px) {
+  .card {
+    width: 25%;
+    height: 200px;
+  }
 }
