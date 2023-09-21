@@ -22,13 +22,13 @@ interface Props {
   employee?: IEmployee;
 }
 
-const FormDialog: React.FC<Props> = (props) => {
+const CreateDialog: React.FC<Props> = (props) => {
   const [firstName, setFirstName] = React.useState<string>("");
   const [lastName, setLastName] = React.useState<string>("");
   const [positionId, setPositionId] = React.useState<number>(0);
   const [docNumber, setDocNumber] = React.useState<string>("");
   const [phoneNumber, setPhoneNumber] = React.useState<string>("");
-  const [email, setEmail] = React.useState<string>(props.employee?.Email ?? "");
+  const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [confirmPassword, setConfirmPassword] = React.useState<string>("");
 
@@ -134,7 +134,6 @@ const FormDialog: React.FC<Props> = (props) => {
             Gender: "M",
             PhoneNumber: phoneNumber,
             Active: true,
-            // Password: "passwordTest",
           };
           handleCreate(employee);
         }}
@@ -295,4 +294,4 @@ const FormDialog: React.FC<Props> = (props) => {
   );
 };
 
-export default FormDialog;
+export default CreateDialog;

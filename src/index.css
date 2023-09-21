@@ -116,6 +116,17 @@ button.login-button {
   font: normal normal 900 18px/22px Lato;
 }
 
+.modal-delete-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+button.modal-delete-button {
+  width: 100px;
+}
 @media only screen and (width < 1366px) {
   .card {
     width: 25%;

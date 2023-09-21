@@ -10,7 +10,8 @@ import iconId from "../assets/Icono-ID.svg";
 import iconEmail from "../assets/Icono-Mail.svg";
 import iconPhoneNumber from "../assets/Icono-Telefono.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Dialog from "./CreateDialog";
+import CreateDialog from "./CreateDialog";
+import DeleteDialog from "./DeleteDialog";
 
 interface Props {
   firstName: string;
@@ -37,7 +38,8 @@ export const CardItem: React.FC<Props> = ({
 }) => {
   const [showButtons, setShowButtons] = React.useState<boolean>(false);
   const [open, setOpen] = React.useState(false);
-  console.log(position);
+  const [deleteOpen, setDeleteOpen] = React.useState(false);
+
   return (
     <Card
       sx={{
@@ -108,12 +110,13 @@ export const CardItem: React.FC<Props> = ({
           <Button
             variant="contained"
             className="card-button card-button-delete"
+            onClick={() => setDeleteOpen(true)}
           >
             Dar de Baja
           </Button>
         </div>
       </CardActions>
-      <Dialog
+      <CreateDialog
         open={open}
         setOpen={setOpen}
         updateList={updateList}
@@ -129,7 +132,15 @@ export const CardItem: React.FC<Props> = ({
           Id: id,
           Gender: gender,
         }}
-      ></Dialog>
+      ></CreateDialog>
+      <DeleteDialog
+        open={deleteOpen}
+        setOpen={setDeleteOpen}
+        updateList={updateList}
+        id={id}
+        setShowButtons={setShowButtons}
+        name={`${firstName} ${lastName}`}
+      ></DeleteDialog>
     </Card>
   );
 };
