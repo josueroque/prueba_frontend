@@ -6,6 +6,7 @@ import iconAdd from "../assets/Icono-Add.svg";
 import { IconButton, Typography } from "@mui/material";
 import Dialog from "../components/Dialog";
 import swal from "sweetalert";
+
 interface IEmployee {
   firstName: string;
   lastName: string;
@@ -22,7 +23,7 @@ const Employees: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const fetchEmployees = async () => {
     try {
-      const response = await getEmployees();
+      const response = await getEmployees("");
       setEmployeesList(response.data);
     } catch (error) {
       swal({

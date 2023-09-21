@@ -3,16 +3,36 @@ import { IEmployee } from "../interfaces";
 
 const baseUrl = "http://localhost:3001/api/v1/clinica";
 
-export const getEmployees = () => {
-  return axios.get(`${baseUrl}/employees`);
+export const authenticate = (token: string) => {
+  return axios.get(`${baseUrl}/employees/authenticate`, {
+    headers: {
+      Authorization: `Basic ${token}`,
+    },
+  });
+};
+
+export const getEmployees = (token: string) => {
+  return axios.get(`${baseUrl}/employees`, {
+    headers: {
+      Authorization: `Basic ${token}`,
+    },
+  });
 };
 
 // export const deleteContacts = (id) => {
 //   return axios.delete(`${baseUrl}api/contact/${id}`);
 // };
 
-export const createEmployee = (employee: IEmployee) => {
-  return axios.post(`${baseUrl}/employees`, { employee });
+export const createEmployee = (employee: IEmployee, token: string) => {
+  return axios.post(
+    `${baseUrl}/employees`,
+    { employee },
+    {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+    }
+  );
 };
 
 // export const editContact = (contact) => {

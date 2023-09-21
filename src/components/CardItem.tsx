@@ -34,18 +34,6 @@ export const CardItem: React.FC<Props> = ({
 }) => {
   const [showButtons, setShowButtons] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    console.log(
-      id,
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      position,
-      documentNumber
-    );
-  });
-
   return (
     <Card
       sx={{
@@ -59,11 +47,14 @@ export const CardItem: React.FC<Props> = ({
       <div className="card-top-row">
         <img src={iconMaleEmployee} alt="Not Found" />
         <div>
-          <Typography
-            variant="h5"
-            color="text.primary"
-            className="card-employee-name"
-          >{`${firstName} ${lastName}`}</Typography>
+          <div style={{ display: "flex" }}>
+            <Typography
+              variant="h6"
+              color="text.primary"
+              className="card-employee-name"
+              display="inline"
+            >{`${firstName} ${lastName}`}</Typography>
+          </div>
           <Typography color="#7B55BF" gutterBottom component="div">
             {position.name}
           </Typography>
@@ -82,19 +73,19 @@ export const CardItem: React.FC<Props> = ({
         <div className="card-row">
           <img src={iconId} alt="Not Found" />
           <Typography variant="body2" color="text.secondary">
-            {`${documentNumber}`}
+            {documentNumber}
           </Typography>
         </div>
         <div className="card-row">
           <img src={iconPhoneNumber} alt="Not Found" />
           <Typography variant="body2" color="text.secondary">
-            {`${phoneNumber}`}
+            {phoneNumber}
           </Typography>
         </div>
         <div className="card-row">
           <img src={iconEmail} alt="Not Found" />
           <Typography variant="body2" color="text.secondary">
-            {`${email}`}
+            {email}
           </Typography>
         </div>
       </CardContent>
@@ -106,7 +97,12 @@ export const CardItem: React.FC<Props> = ({
           <Button variant="contained" className="card-button card-button-edit">
             Editar
           </Button>
-          <Button variant="contained">Dar de Baja</Button>
+          <Button
+            variant="contained"
+            className="card-button card-button-delete"
+          >
+            Dar de Baja
+          </Button>
         </div>
       </CardActions>
     </Card>

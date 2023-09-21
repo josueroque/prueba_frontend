@@ -35,7 +35,7 @@ code {
 }
 
 .card-employee-name {
-  font: "normal normal 900 24px/28px Lato";
+  font: "normal normal 900 20px/24px Lato";
   font-weight: bold;
 }
 
@@ -85,6 +85,35 @@ code {
 .modal-button {
   background: #081551 0% 0% no-repeat padding-box !important;
   border-radius: 20px !important;
+}
+
+.page-login {
+  background-color: #081551;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-label {
+  color: white;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.login-logo {
+  margin-top: 125px;
+}
+
+button.login-button {
+  margin-top: 80px;
+  width: 160px;
+  height: 50px;
+  background: #00b9eb 0% 0% no-repeat padding-box;
+  border-radius: 30px;
+  opacity: 1;
+  text-transform: none;
+  font: normal normal 900 18px/22px Lato;
 }
 
 @media only screen and (width < 1366px) {

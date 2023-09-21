@@ -32,18 +32,18 @@ const FormDialog: React.FC<Props> = (props) => {
 
   const handleCreate = async (employee: IEmployee) => {
     try {
-      await createEmployee(employee);
+      await createEmployee(employee, "");
       swal({
         title: "success",
         icon: "success",
-        text: "The employee has been saved!",
+        text: "La información se guardo con exito",
       });
       props.updateList();
       handleClose();
     } catch (error) {
       swal({
         title: "Error",
-        text: "An error ocurred saving the employee",
+        text: "Ocurrio un error, no se guardo el empleado",
         icon: "error",
       });
     }
