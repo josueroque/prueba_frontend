@@ -8,7 +8,7 @@ import swal from "sweetalert";
 import { Buffer } from "buffer";
 
 const Login = () => {
-  const { dispatch, userState } = React.useContext(UserContext);
+  const { dispatch } = React.useContext(UserContext);
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 

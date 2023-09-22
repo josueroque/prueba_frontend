@@ -201,6 +201,12 @@ button.dashboard-first-row-button {
   font-weight: bold;
 }
 
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (width <1370px) {
   .card {
     width: 25%;

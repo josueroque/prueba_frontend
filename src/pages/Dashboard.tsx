@@ -10,7 +10,7 @@ import swal from "sweetalert";
 
 const Dashboard = () => {
   const [employeesList, setEmployeesList] = React.useState([]);
-  const { dispatch, userState } = React.useContext(UserContext);
+  const { userState } = React.useContext(UserContext);
   const months = [
     "Enero",
     "Febrero",

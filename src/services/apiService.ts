@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IEmployee } from "../interfaces";
 
-const baseUrl = "http://localhost:3001/api/v1/clinica";
+const baseUrl = "http://localhost:3001/api/v1";
 
 export const authenticate = (token: string) => {
   return axios.get(`${baseUrl}/employees/authenticate`, {
