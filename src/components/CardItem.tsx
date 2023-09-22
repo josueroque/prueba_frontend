@@ -23,6 +23,7 @@ interface Props {
   id: number;
   gender: string;
   updateList: () => {};
+  positions: any[];
 }
 
 export const CardItem: React.FC<Props> = ({
@@ -34,6 +35,7 @@ export const CardItem: React.FC<Props> = ({
   position,
   documentNumber,
   gender,
+  positions,
   updateList,
 }) => {
   const [showButtons, setShowButtons] = React.useState<boolean>(false);
@@ -132,6 +134,7 @@ export const CardItem: React.FC<Props> = ({
           Id: id,
           Gender: gender,
         }}
+        positions={positions}
       ></CreateDialog>
       <DeleteDialog
         open={deleteOpen}

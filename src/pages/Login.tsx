@@ -20,7 +20,6 @@ const Login = () => {
         "base64"
       );
       const response = await authenticate(token);
-      console.log(response);
       if (response.status === 200) {
         dispatch({
           type: "SAVE",

@@ -9,7 +9,6 @@ import { IEmployee } from "../interfaces";
 import { createEmployee, editEmployee } from "../services/apiService";
 import { IconButton, MenuItem, Select } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { getPositions } from "../services/apiService";
 import { UserContext } from "../context/UserContext";
 import swal from "sweetalert";
 
@@ -20,6 +19,7 @@ interface Props {
   updateList: () => {};
   id: number;
   employee?: IEmployee;
+  positions: any[];
 }
 
 const CreateDialog: React.FC<Props> = (props) => {
@@ -32,13 +32,10 @@ const CreateDialog: React.FC<Props> = (props) => {
   const [password, setPassword] = React.useState<string>("");
   const [confirmPassword, setConfirmPassword] = React.useState<string>("");
 
-  const { dispatch, userState } = React.useContext(UserContext);
-
-  const positions = getPositions();
+  const { userState } = React.useContext(UserContext);
 
   React.useEffect(() => {
     if (props.employee) {
-      console.log(props.employee);
       setEditValues();
     }
   }, [props.employee]);
@@ -106,7 +103,7 @@ const CreateDialog: React.FC<Props> = (props) => {
       },
     },
   };
-
+  console.log(props.positions);
   return (
     <Dialog
       open={props.open}
@@ -232,9 +229,9 @@ const CreateDialog: React.FC<Props> = (props) => {
                   marginBottom: "13px",
                 }}
               >
-                {positions.map((item) => (
-                  <MenuItem key={item.Id} value={item.Id}>
-                    {item.Name}
+                {props.positions.map((item) => (
+                  <MenuItem key={item.id} value={item.id}>
+                    {item.name}
                   </MenuItem>
                 ))}
               </Select>

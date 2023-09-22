@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { getEmployees } from "../services/apiService";
+import { getEmployees, getPositions } from "../services/apiService";
 import CardItem from "../components/CardItem";
 import iconAdd from "../assets/Icono-Add.svg";
 import { IconButton, Typography } from "@mui/material";
@@ -22,6 +22,7 @@ interface IEmployee {
 
 const Employees: React.FC = () => {
   const [employeesList, setEmployeesList] = React.useState([]);
+  const [positions, setPositions] = React.useState([]);
   const [employeesPage, setEmployeesPage] = React.useState([]);
 
   const [open, setOpen] = React.useState(false);
@@ -64,9 +65,32 @@ const Employees: React.FC = () => {
     }
   };
 
+  const fetchPositions = async () => {
+    try {
+      if (!userState.token) {
+        navigate("/");
+      }
+      const response = await getPositions(userState.token);
+      setPositions(response.data);
+    } catch (error) {
+      if (userState.token) {
+        swal({
+          title: "Error",
+          text: "An error ocurred fetching the data",
+          icon: "error",
+        });
+      }
+    }
+  };
+
   React.useEffect(() => {
     fetchEmployees();
+    fetchPositions();
   }, []);
+
+  React.useEffect(() => {
+    // setOpen(open);
+  }, [positions]);
 
   React.useEffect(() => {
     if (employeesList.length > 0) {
@@ -95,15 +119,23 @@ const Employees: React.FC = () => {
       <div className="page-employees">
         {employeesPage.length > 0 &&
           employeesPage.map((item: IEmployee) => (
-            <CardItem {...item} key={item.id} updateList={fetchEmployees} />
+            <CardItem
+              positions={positions}
+              {...item}
+              key={item.id}
+              updateList={fetchEmployees}
+            />
           ))}
       </div>
-      <Dialog
-        open={open}
-        setOpen={setOpen}
-        updateList={fetchEmployees}
-        id={0}
-      ></Dialog>
+      {positions.length > 0 && (
+        <Dialog
+          open={open}
+          setOpen={setOpen}
+          updateList={fetchEmployees}
+          positions={positions}
+          id={0}
+        ></Dialog>
+      )}
       <div className="pagination">
         <div
           style={{
