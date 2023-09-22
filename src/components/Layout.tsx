@@ -6,17 +6,14 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import logo from "../assets/Logo-IngenieriaDigital.svg";
 import isoLogo from "../assets/Isologo-IngenieriaDigital.svg";
 import iconoHome from "../assets/Icono-Home.svg";
 import iconoEmployees from "../assets/Icono-Colaboradores.svg";
+import { Link } from "react-router-dom";
 const drawerWidth = 320;
 
 //TODO: Move inline styles to a separated styles sheet
@@ -57,42 +54,64 @@ const Layout = (props: any) => {
             width: "100px",
             height: "50px",
             marginTop: "100px",
-            marginLeft: "1vw",
+            marginLeft: "2vw",
             marginBottom: "10vh",
           }}
         >
           <img src={logo} alt="logo" />
         </div>
 
-        <div
-          style={{
-            width: "100px",
-            height: "50px",
-            marginTop: "7h",
-            marginLeft: "1vw",
-            marginBottom: "5vh",
-          }}
-        >
-          <img src={isoLogo} alt="logo-test" />
+        <div style={{ display: "flex", gap: 0 }}>
+          <div
+            style={{
+              width: "100px",
+              height: "50px",
+              marginTop: "7h",
+              marginLeft: "1vw",
+              marginBottom: "5vh",
+              marginRight: 0,
+              padding: 0,
+            }}
+          >
+            <img src={isoLogo} alt="logo" />
+          </div>
+          <p
+            style={{
+              padding: 0,
+              marginLeft: "-30px",
+              font: "normal normal normal 18px/20px Lato",
+              color: "#F8FBFD",
+              letterSpacing: "0px",
+              textAlign: "left",
+            }}
+          >
+            Ingenieria Digital S.A. de C.V.
+          </p>
         </div>
-
-        <List
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            justifyItems: "center",
-            flexDirection: "column",
-          }}
-        >
+        <List>
           {["Dashboard", "Colaboradores"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <img
-                  src={index % 2 === 0 ? iconoHome : iconoEmployees}
-                  alt="logo"
-                  style={{ margin: "10px" }}
-                />
-                <ListItemText primary={text} style={{ color: "white" }} />
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={text === "Colaboradores" ? "/employees" : "/dashboard"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "15px",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src={index % 2 === 0 ? iconoHome : iconoEmployees}
+                      alt="logo"
+                      style={{ marginLeft: "40px" }}
+                    />
+                    <ListItemText primary={text} style={{ color: "white" }} />
+                  </div>
+                </Link>
               </ListItemButton>
             </ListItem>
           ))}

@@ -88,11 +88,12 @@ code {
 }
 
 .page-login {
-  background-color: #081551;
   height: 100vh;
+  background: #081551 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .login-label {
@@ -102,7 +103,7 @@ code {
 }
 
 .login-logo {
-  margin-top: 125px;
+  margin-top: 1px;
 }
 
 button.login-button {
@@ -127,9 +128,97 @@ button.login-button {
 button.modal-delete-button {
   width: 100px;
 }
-@media only screen and (width < 1366px) {
+
+.dashboard-second-box {
+  background: #00b9eb 0% 0% no-repeat padding-box;
+  box-shadow: 1px 1px 10px #ecf6fa;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+.dashboard-second-row {
+  height: 410px;
+  width: 48%;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 1px 1px 10px #d2e4ea;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+button.dashboard-second-box-button {
+  width: 78px;
+  height: 24px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  opacity: 1;
+  text-transform: capitalize;
+  color: white;
+  font-size: 0.65rem;
+}
+
+.dashboard-second-box-fist-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-employee-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.dashboard-main-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 10vh;
+  justify-content: center;
+}
+
+.dashboard-second-box-botton {
+  margin-top: 50%;
+}
+
+.dashboard-first-row {
+  width: 72%;
+  background-color: #081551;
+  height: 310px;
+  border-radius: 20px;
+  display: flex;
+}
+.dashboard-first-row-text {
+  width: 50%;
+  padding: 25px;
+  padding-top: 35px;
+}
+
+button.dashboard-first-row-button {
+  border-radius: 20px;
+  margin-top: 20px;
+  background-color: #7b55bf;
+  width: 160px;
+  height: 45px;
+  text-transform: capitalize;
+  color: white;
+  font-weight: bold;
+}
+
+@media only screen and (width <1370px) {
   .card {
     width: 25%;
     height: 200px;
+  }
+
+  button.login-button {
+    margin-top: 50px;
+  }
+  .login-label {
+    margin-top: 15px;
+  }
+
+  .login-logo {
+    margin-top: 50px;
+  }
+
+  .dashboard-second-box-botton {
+    padding-top: 60px;
   }
 }

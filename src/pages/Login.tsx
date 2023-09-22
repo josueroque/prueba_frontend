@@ -40,7 +40,13 @@ const Login = () => {
   return (
     <div className="page-login">
       <img className="login-logo" src={logo} alt="Not found" />
-      <Typography variant="h3" color="white" fontWeight="bold" marginTop="30px">
+      <Typography
+        variant="h3"
+        color="white"
+        fontWeight="bold"
+        marginTop="30px"
+        className="login-text-title"
+      >
         Bienvenido a Ingeniería Digital
       </Typography>
       <Typography
@@ -48,6 +54,7 @@ const Login = () => {
         color="white"
         fontWeight="bold"
         marginBottom="30px"
+        className="login-text-title"
       >
         Ingresa tus datos para acceder a tu cuenta
       </Typography>
