@@ -135,6 +135,7 @@ const CreateDialog: React.FC<Props> = (props) => {
             PhoneNumber: phoneNumber,
             Active: true,
           };
+          if (!props.id) employee.Password = password;
           handleCreate(employee);
         }}
       >

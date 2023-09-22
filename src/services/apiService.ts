@@ -29,15 +29,11 @@ export const deleteEmployee = (id: number, deletedAt: any, token: string) => {
 };
 
 export const createEmployee = (employee: IEmployee, token: string) => {
-  return axios.post(
-    `${baseUrl}/employees`,
-    { employee },
-    {
-      headers: {
-        Authorization: `Basic ${token}`,
-      },
-    }
-  );
+  return axios.post(`${baseUrl}/employees`, employee, {
+    headers: {
+      Authorization: `Basic ${token}`,
+    },
+  });
 };
 
 export const editEmployee = (employee: IEmployee, token: string) => {
